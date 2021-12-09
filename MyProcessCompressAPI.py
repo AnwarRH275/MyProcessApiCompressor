@@ -64,7 +64,7 @@ def compress_file(input_file: str, output_file: str):
     return summary
 
 def archiveFile(input_file_name,output_file_name):
-    summary = compress_file(UPLOAD_FOLDER+'/'+input_file_name,UPLOAD_FOLDER+'/'+ output_file_name)
+    summary = compress_file(input_file_name, output_file_name)
     
     return summary
     
