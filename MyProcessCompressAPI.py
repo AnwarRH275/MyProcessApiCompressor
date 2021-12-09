@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 app.secret_key = "MyProcessCompressor.BPM24"
  
-UPLOAD_FOLDER = 'UPLOAD_FOLDER'
+UPLOAD_FOLDER = ''
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
@@ -113,7 +113,7 @@ def upload_file():
     if success:
         resp = jsonify({'message' : 'Files successfully uploaded',
                          'summary':summary,
-                         'url':'http://127.0.0.1:5000/'+UPLOAD_FOLDER+'/'+filename[:-4]+'_min.pdf'
+                         'url':'http://127.0.0.1:5000/'+filename[:-4]+'_min.pdf'
         })
         ##download_file(filename[:-4]+'-min.pdf')
         resp.status_code = 201
@@ -123,7 +123,7 @@ def upload_file():
         resp.status_code = 500
         return resp
     
-@app.route('/UPLOAD_FOLDER/<path:filename>')
+@app.route('/<path:filename>')
 def download_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],
                                filename, as_attachment=True)
