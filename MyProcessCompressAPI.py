@@ -43,7 +43,7 @@ def compress_file(input_file: str, output_file: str):
         doc.InitSecurityHandler()
         # Reduce PDF size by removing redundant information and compressing data streams
         Optimizer.Optimize(doc)
-        doc.Save(UPLOAD_FOLDER+'/'+output_file, SDFDoc.e_linearized)
+        doc.Save(output_file, SDFDoc.e_linearized)
         doc.Close()
     except Exception as e:
         print("Error compress_file=", e)
